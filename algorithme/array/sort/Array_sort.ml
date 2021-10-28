@@ -1,0 +1,31 @@
+(* [tri_comptage_t  t1] transform t1 into a sorted array*)
+let tri_comptage_t t1 =
+    let m = maxi_t t1 in
+    let compte = Array.make (m+1) 0 in
+    let n = Array.length t1 in
+    for i=0 to n - 1 do
+        compte.(t1.(i)) <- compte.(t1.(i)) + 1
+    done;
+    let k = ref 0 in 
+    for i=0 to m do
+        for j=1 to compte.(i) do
+            t1.(!k) <- i;
+            incr k
+        done;
+    done;
+    t1;;
+    
+(* [swap t i j] exchanges [t.(i)] and [t.(j)] *)    
+let swap_t t1 i j =
+  let tmp = t1.(i) in
+  t1.(i) <- t1.(j);
+  t1.(j) <- tmp;;
+  
+(* [sort_bubble t] sorts array t using bubble sorting (O(n**2)) *)
+let sort_bubble_t t1 = 
+  for _ = 0 to Array.length t1 - 1 do
+    for j = 0 to Array.length t1 - 2 do
+      if t1.(j) > t1.(j + 1) then swap_t t1 j (j + 1)
+      done
+  done;;
+  
