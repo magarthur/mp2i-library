@@ -1,0 +1,20 @@
+(* [split_l l1] transform a list into two lists : split [a1;a2;a3;a4;...,an] is [a1;a3...;an], [a2;a4;...;a(n-1)] *)
+let rec split_l l1 = match l1 with
+    |[] -> ([],[])
+    |[e] -> ([e],[])
+    |e1::e2::q -> let q1, q2 = split_l q in
+                    e1::q1, e2::q2;;
+                    
+(* [fusion_l l1 l2] merges two sorted lists into one sorted list *)
+let rec fusion_l l1 l2 = match l1, l2 with
+    |[],_ -> l2
+    |_,[] -> l1
+    |e1::q1, e2::q2 -> if e1< e2 then e1::fusion_l q1 l2
+                        else e2::fusion_l l1 q2;;
+                        
+(* [tri_l l1] transform l1 into a sorted list *)
+let rec sort_l l1 = match l1 with
+    |[] -> []
+    |[e] -> [e]
+    |_ -> let l2, l3 = split_l l1 in
+        fusion_l (sort_l l2) (sort_l l3);;
