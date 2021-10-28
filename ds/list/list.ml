@@ -67,6 +67,18 @@ let rec decrease_l l1 = match l1 with
     |[e] -> true
     |e::e1::q -> e<e1 || increase_l (e1::q);;
     
+(* [doublon_l l1] returns true or false if the has one or more duplicates *)
+let rec doublon_l l1 = match l1 with
+    |[] -> false
+    |e::q -> if mem_l e q then true
+                else doublon_l q;;
+
+(* [doublon2_l l1] returns [l1] without duplicates *)
+let rec doublon2_l l1 = match l1 with
+    |[] -> []
+    |e::q -> if mem_l e q then doublon2_l q
+            else e::doublon2_l q;;
+    
 (* [equal_l [a1; ...; an] [b1; ..; bm]] holds when the two input lists have the same length, and for each pair of elements ai, bi at the same position we have eq ai bi.*)
 let rec equal_l l1 l2 = match l1,l2 with
     |[],[] -> true
