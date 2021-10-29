@@ -1,3 +1,11 @@
+(* [maxi_l t1] returns the maximum of [t1]*)
+let maxi_t t1 = 
+    let result = ref min_int in
+    for i = 0 to ((Array.length t1)-1) do
+        if t1.(i)> !result then result := t1.(i)
+    done;
+    !result;;
+
 (* [tri_comptage_t  t1] transform t1 into a sorted array*)
 let tri_comptage_t t1 =
     let m = maxi_t t1 in
