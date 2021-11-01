@@ -37,4 +37,4 @@ let rec partition_l l1 pivot = match l1 with
 let rec quicksort_l l1 = match l1 with
     |[]->[]
     |p::q -> let l2, l3 = partition_l q p in
-        append_l (quicksort_l l2) (quicksort_l l3)
+        append_l (quicksort_l l2) (p::quicksort_l l3)
