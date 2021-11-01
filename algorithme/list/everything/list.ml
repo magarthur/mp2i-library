@@ -141,6 +141,21 @@ let rec sort_l l1 = match l1 with
     |_ -> let l2, l3 = split_l l1 in
         fusion_l (sort_l l2) (sort_l l3);;
         
+(*partition l p returns a pair (l1, l2) where :
+- l1 is a list containing the elements of l strictly less than p
+- l2 is a list containing the elements of l greater than or equal to p *)
+let rec partition_l l1 pivot = match l with
+    |[] -> [],[]
+    |e::q -> let l2,l3 = partition q pivot in
+                if e< pivot then e::l2, l3
+                else l2, e::l3
+
+(* [quicksort_l l1] transform l1 into a sorted list *)
+let rec quicksort_l l1 = match l with
+    |[]->[]
+    |p::q -> let l2, l3 = partition q p in
+        append_l (quicksort_l l2) (quicksort_l l3)
+        
 (* [add_l e ll] returns a list of lists obtained by adding e to each list of [ll]. *)
 let rec add_l e ll = match ll with
     | [] -> []
@@ -170,3 +185,4 @@ let array_to_list t =
         if i = 0 then []
         else t.(m-i)::aux (i-1) in
 aux m;;
+
