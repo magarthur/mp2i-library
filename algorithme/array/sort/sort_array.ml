@@ -6,7 +6,7 @@ let maxi_t t1 =
     done;
     !result;;
 
-(* [tri_comptage_t  t1] transform t1 into a sorted array*)
+(* [tri_comptage_t  t1] transform t1 into a sorted array of size n whose inputs are integers between 0 and M*)
 let tri_comptage_t t1 =
     let m = maxi_t t1 in
     let compte = Array.make (m+1) 0 in
