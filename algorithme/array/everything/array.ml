@@ -2,7 +2,7 @@
 let sum_t t1 = 
     let result = ref 0 in
     for i=0 to ((Array.length t1)-1) do
-        result := t1.(0) + !result
+        result := t1.(i) + !result
     done;
     !result;;
 
