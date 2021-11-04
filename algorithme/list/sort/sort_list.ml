@@ -38,3 +38,14 @@ let rec quicksort_l l1 = match l1 with
     |[]->[]
     |p::q -> let l2, l3 = partition_l q p in
         append_l (quicksort_l l2) (p::quicksort_l l3)
+
+(* [insert x l] insert x into a sorted list l *)
+let rec insert x l = match l with 
+    |[] -> [x]
+    |e::q -> if x <=e then x::e::q
+            else e::insert x q;;
+
+(* [insert_sort l] transform a list into a sorted list, complexity = O(n^2) *)
+let rec insert_sort l = match l with
+    |[] -> []
+    |e::q -> insert e (insert_sort q);;
