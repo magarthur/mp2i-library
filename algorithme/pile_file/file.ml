@@ -14,4 +14,22 @@ let retire f =
         (f.deb <- (f.deb + 1) mod Array.length f.tab;
         f.vide <- f.deb = f.fin;
         res);;
-        
+ 
+
+
+(*file with two lists *)
+type 'a file = {extra: 'a list; ajout: 'a list};;
+
+(* [add_file f e] add e in the "ajout" list" *)
+let add_file f e = 
+    {extra = f.extra; ajout = e::f.ajout}
+    
+(* [empty_file ] returns if f is empty or not *)
+let empty_file f =
+    f.extra = [] && f.ajout = [];;
+
+(*[pop_file f] delete the first element of extra (so the last element of the file) and give this element*) 
+let pop_file f = match f.extra with
+  |e::q -> e, {extra = q; ajout = f.ajout}
+  |[] -> {extra = List.rev f.ajout ; ajout = []};;
+    
