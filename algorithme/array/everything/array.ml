@@ -1,3 +1,7 @@
+(*missing dynamic array in the test*)
+
+
+
 (* [sum_l t1] returns the sum of elements of [t1] *)
 let sum_t t1 = 
     let result = ref 0 in
@@ -187,3 +191,20 @@ let array_to_list t =
         if i = 0 then []
         else t.(m-i)::aux (i-1) in
 aux m;;
+
+
+type 'a dyn = {mutable t :'a array; mutable n : int};;
+
+(*copy t1 into t2 *)
+let copy t1 t2 = 
+    for i = 0 to Array.length t1 - 1 do
+    t2.(i) <- t1.(i)
+    done;;
+    
+    
+(*add e into d with O(1) complexity *)
+let add e d =
+    if d.n < Array.length d.t then (d.t.(d.n) <- e;d.n <-d.n +1) 
+    else if d.n = 0 then (d.t <- [|e|]; d.n <- d.n + 1)
+    else let t' = Array.make (2*d.n) d.t.(0) in
+    (copy d.t t'; t'.(d.n) <- e; d.t <- t';d.n <- d.n + 1);
