@@ -43,7 +43,7 @@ let copy t1 t2 =
     t2.(i) <- t1.(i)
     done;;
         
-(*add e into d with O(1) complexity *)
+(*[add e d] add e into d with O(1) complexity *)
 let add e d =
     if d.n < Array.length d.t then (d.t.(d.n) <- e;d.n <-d.n +1) 
     else if d.n = 0 then (d.t <- [|e|]; d.n <- d.n + 1)
