@@ -26,5 +26,5 @@ let stack_push_t p e =
         
 (* [stack_pop_t p] retires the first element of the stack and give this element *)
 let stack_pop_t p e =
-  if p.n = O then failwith "stack is empty"
+  if p.n = 0 then failwith "stack is empty"
   else (p.n <- p.n -1 ;p.t.(p.n));;
