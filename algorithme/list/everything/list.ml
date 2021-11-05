@@ -1,3 +1,6 @@
+(*missing insert_sort in the test*)
+
+
 (* [fst_l l1] returns the first element of [l1]*)
 let fst_l l1 = match l1 with
     |[] -> failwith " not elements"
@@ -155,6 +158,17 @@ let rec quicksort_l l1 = match l1 with
     |[]->[]
     |p::q -> let l2, l3 = partition_l q p in
          append_l (quicksort_l l2) (p::quicksort_l l3)
+  
+(* [insert x l] insert x into a sorted list l *)
+let rec insert x l = match l with 
+    |[] -> [x]
+    |e::q -> if x <=e then x::e::q
+            else e::insert x q;;
+
+(* [insert_sort l] transform a list into a sorted list, complexity = O(n^2) *)
+let rec insert_sort l = match l with
+    |[] -> []
+    |e::q -> insert e (insert_sort q);;
         
 (* [add_l e ll] returns a list of lists obtained by adding e to each list of [ll]. *)
 let rec add_l e ll = match ll with
