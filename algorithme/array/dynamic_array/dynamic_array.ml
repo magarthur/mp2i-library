@@ -18,3 +18,16 @@ let add e d =
 let del d = 
     if d.n = 0 then failwith "array is empty"
     else (d.n <- d.n - 1; d.t.(d.n));;
+
+
+let copy t1 t2 = 
+    for i = 0 to Array.length t1-1 do 
+    t2.(i) <- t1.(i)
+    done;
+
+
+let del_dyn d =
+    if d.n = 0 then failwith "array is empty"
+    else if d.n <= (Array.length d.t)/2 && d.n > 0 then 
+        let t' = Array.make ((Array.length d.t)/2) d.t.(0) in (copy_bis d.t t'; d.t <- t' ; d.n <- d.n -1; d.t.(d.n))
+    else (d.n <- d.n - 1; d.t.(d.n));;
