@@ -9,6 +9,11 @@ let recherche t k =
     | [] -> false
     |(k',_)::q -> k=k' || aux q in 
     aux t.donnees.(t.hache k);;
+    
+(*
+let recherche_bis t k =
+    List.exists (fun x -> fst x = k) t.donnees.t.(hache k )
+ *)
 
 (* [element t k] returns element of key k in the "table_hachage"]*)
 let element t k =
@@ -17,6 +22,12 @@ let element t k =
     |(k',e)::q -> if k=k' then e
                 else aux q in
 aux t.donnees.(t.hache k);;
+
+(*
+let element_bis t k 
+    list.filter (fun x -> fst x = k) t.donnees.(t.hache k)
+    |> List.hd 
+*)
 
 (* [ajout t k e] add the element e in "table_hachage" with the key k *)
 let add t k e =
