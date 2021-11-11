@@ -20,7 +20,7 @@ let retire f =
 (*file with two lists *)
 type 'a file = {extra: 'a list; ajout: 'a list};;
 
-(* [add_file f e] add e in the "ajout" list" *)
+(* [add_file f e] add e in the "ajout" list *)
 let add_file f e = 
     {extra = f.extra; ajout = e::f.ajout}
     
