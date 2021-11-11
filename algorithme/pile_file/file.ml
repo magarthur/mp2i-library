@@ -29,7 +29,7 @@ let empty_file f =
     f.extra = [] && f.ajout = [];;
 
 (*[pop_file f] delete the first element of extra (so the last element of the file) and give this element*) 
-let pop_file f = match f.extra with
+let rec pop_file f = match f.extra with
   |e::q -> e, {extra = q; ajout = f.ajout}
-  |[] -> {extra = List.rev f.ajout ; ajout = []};;
+  |[] -> pop_file {extra = List.rev f.ajout ; ajout = []};;
     
