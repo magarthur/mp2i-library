@@ -61,13 +61,13 @@ let rec maxi_l l1 = match l1 with
 let rec increase_l l1 = match l1 with
     |[] -> true
     |[e] -> true
-    |e::e1::q -> e>e1 || increase_l (e1::q);;
+    |e::e1::q -> e>e1 && increase_l (e1::q);;
 
 (* [decrease_l l1] returns if [l1] decreases *)
 let rec decrease_l l1 = match l1 with
     |[] -> true
     |[e] -> true
-    |e::e1::q -> e<e1 || increase_l (e1::q);;
+    |e::e1::q -> e<e1 && increase_l (e1::q);;
     
 (* [doublon_l l1] returns true or false if the has one or more duplicates *)
 let rec doublon_l l1 = match l1 with
