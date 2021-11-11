@@ -34,8 +34,9 @@ let stack_pop_t p =
 
 
 
+
 (*stack with dynamic array*)
-type 'a dyn = {mutable t :'a array; mutable n : int};;
+type 'a dyn = {mutable d :'a array; mutable n : int};;
 
 (*copy t1 into t2 *)
 let copy t1 t2 = 
@@ -45,9 +46,15 @@ let copy t1 t2 =
 
 (* [stack_push_d p e] push e in the stack p with a dynamic array*)
 let stack_push_d e p = 
-    if p.n < Array.length p.t then (p.t.(p.n) <- e; p.n <- p.n +1)
-    else if p.n = 0 then (p.t <- [|e|]; p.n <- 1)
-    else let t' = Array.make (2*p.n) p.t.(0) in
-        (copy p.t t'; t'.(p.n) <- e; p.t <- t'; p.n <- p.n +1);;
+    if p.n < Array.length p.d then (p.d.(p.n) <- e; p.n <- p.n +1)
+    else if p.n = 0 then (p.d <- [|e|]; p.n <- 1)
+    else let d' = Array.make (2*p.n) p.d.(0) in
+        (copy p.d d'; d'.(p.n) <- e; p.d <- d'; p.n <- p.n +1);;
 
-(* [stack_empty_t p] and [stack_pop_t p] are the same with and without dynamic array*)
+(* [stack_pop_d p] retires the first element of the stack and give this element *)
+let stack_pop_d p =
+  if p.n = 0 then failwith "stack is empty"
+  else (p.n <- p.n -1 ;p.d.(p.n));;
+  
+(* [stack_empty_d p] returns if p is empty*)
+let stack_empty_d p = p.n = 0;;
