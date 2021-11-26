@@ -18,3 +18,9 @@ int maximum(int* t, int n){
     }
     return resultat;
 }
+
+void print_array(int* t, int n){
+    for(int i=0; i<=n-1; i++){
+        printf("%d, ", t[i]);
+    }
+}
