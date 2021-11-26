@@ -36,3 +36,13 @@ bool doublon_array(int* t, int n){
     }
     return resultat;
 }
+
+bool increase_array(int* t, int n){
+    bool resultat = true;
+    for(int i = 0; i < n-1; i++){
+        if(t[i]>t[i+1]){
+            resultat = false;
+        }
+    }
+    return resultat;
+}
