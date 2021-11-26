@@ -24,3 +24,15 @@ void print_array(int* t, int n){
         printf("%d, ", t[i]);
     }
 }
+
+bool doublon_array(int* t, int n){
+    bool resultat = false;
+    for(int i = 0; i<=n-2;i++){
+        for(int j = i+1; j<=n-1;j++){
+            if(t[i] == t[j]){
+                resultat = true;
+            }
+        }
+    }
+    return resultat;
+}
