@@ -31,7 +31,12 @@ void copy(int* t1, int* t2, int n) {
 void add(darray* d, int e) {
     if(d->size == d->capacity) {
         int* tmp = d->t; // conserve a->t pour pouvoir le free ensuite
+        if (d->capacity == 0){
+            d->capacity = 1;
+            }
+        else{
         d->capacity *= 2;
+        }
         d->t = (int*)malloc(sizeof(int)*d->capacity);
         copy(tmp, d->t, d->size);
         free(tmp);
