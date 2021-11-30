@@ -46,9 +46,8 @@ bool appartient(list* l, int e){
 }
     
 list* del(list*l){
-    list* l_new = (list*)malloc(sizeof(list));
-    l_new = l;
-    l_new->next->prev = l_new->prev;
-    l_new->prev->next = l_new->next;
-    return l_new;
+    l->next->prev = l->prev;
+    l->prev->next = l->next;
+    // mettre une variable
+    return l->next;
 }
