@@ -46,3 +46,13 @@ bool increase_array(int* t, int n){
     }
     return resultat;
 }
+
+bool equal(int* t1, int* t2, int n){
+    bool result = true;
+    for(int i = 0; i<n ; i++){
+        if (t1[i]!=t2[i]){
+            result = false;
+        }
+    }
+    return result;
+}
