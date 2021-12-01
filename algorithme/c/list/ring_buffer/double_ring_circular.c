@@ -23,7 +23,7 @@ list* add(list* l, int e){
     return l_new;
 }
 
-void print_list(list* l){
+void print_list_1(list* l){
     list* l_cur = l->next;
     printf("[");
     while(l_cur != l){
@@ -32,6 +32,22 @@ void print_list(list* l){
     }
     printf("%d]", l_cur -> elem);
 
+}
+
+list* reverse(list* l) {
+    list* res = create(l->elem);
+    list* l_cur = l->prev;
+    while(l_cur != l) {
+        res = add(res, l_cur->elem);
+        l_cur = l_cur->prev;
+        
+    }
+    return res;
+}
+
+
+void print_list(list* l){
+    return print_list_1(reverse(l));
 }
 
 bool appartient(list* l, int e){
