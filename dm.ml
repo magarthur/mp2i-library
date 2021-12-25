@@ -25,3 +25,8 @@ let mul_poly_naive t d =
     let add z1 z2 = {re = z1.re +. z2.re; im = z1.im +. z2.im};;
     
     let mul z1 z2 = {re = z1.re*.z2.re -. z1.im*.z2.im; im = z1.re*.z2.im +. z1.im*.z2.re};;
+
+
+let rec horner l i = match l with 
+    |[] -> zero;
+    |e::q -> add e (mul i (horner q i));
