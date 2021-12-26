@@ -62,7 +62,7 @@ let rec puiss2 l =
     let t = List.length l in
     if pow t 2 
     then l 
-    else puiss2 (ajout_end l 0);;
+    else puiss2 (ajout_end l zero);;
         
 
 
@@ -72,11 +72,11 @@ let completer l =
         let t' = List.length l' in
         if t' = 2*t - 1
             then l'
-        else aux (ajout_end l' 0) in
+        else aux (ajout_end l' zero) in
         aux l;;
 
 
 let rec mul_ft l1 l2 = match l1,l2 with
     |[],l2->l2
     |l1,[]->l1
-    |e1::q1,e2::q2 -> (e1*e2)::mul_ft q1 q2;;
+    |e1::q1,e2::q2 -> (mul e1 e2)::mul_ft q1 q2;;
