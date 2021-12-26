@@ -30,3 +30,10 @@ let mul_poly_naive t d =
 let rec horner l i = match l with 
     |[] -> zero;
     |e::q -> add e (mul i (horner q i));
+
+
+let rec divise l = match l with 
+    |[]->([],[])
+    |[e] -> ([e],[])
+    |e::e1::q -> let q1, q2 = divise q in 
+                e::q1, e1::q2
