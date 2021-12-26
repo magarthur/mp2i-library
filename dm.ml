@@ -74,3 +74,9 @@ let completer l =
             then l'
         else aux (ajout_end l' 0) in
         aux l;;
+
+
+let rec mul_ft l1 l2 = match l1,l2 with
+    |[],l2->l2
+    |l1,[]->l1
+    |e1::q1,e2::q2 -> (e1*e2)::mul_ft q1 q2;;
