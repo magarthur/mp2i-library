@@ -37,3 +37,32 @@ let rec divise l = match l with
     |[e] -> ([e],[])
     |e::e1::q -> let q1, q2 = divise q in 
                 e::q1, e1::q2
+                
+                
+                
+                
+let rec pow y x = 
+    let x1 = x in
+    let rec aux y' x' = 
+    if x' > y' then false
+    else let m = x1*x' in
+        if m = y' then true
+        else aux y' m in 
+        aux y x;;
+        
+        
+        
+        
+let rec ajout_end l e = match l with
+    |[]->[e]
+    |e1::q -> e1::(puiss3 q e);;
+    
+    
+let rec puiss2 l = 
+    let t = List.length l in
+    if pow t 2 
+    then l 
+    else puiss2 (ajout_end l 0);;
+        
+
+
