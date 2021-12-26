@@ -83,7 +83,7 @@ let rec mul_ft l1 l2 = match l1,l2 with
 
 
 let coeff l =
-    let n = {re = 1./.float_of_int(List.length l);im = 1./.float_of_int(List.length l)} in
+    let n = {re = 1./.float_of_int(List.length l);im = 0.} in
     let rec aux l' = match l' with
         |[]->[]
         |e::q -> (mul n e)::aux q in
