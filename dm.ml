@@ -80,3 +80,11 @@ let rec mul_ft l1 l2 = match l1,l2 with
     |[],l2->l2
     |l1,[]->l1
     |e1::q1,e2::q2 -> (mul e1 e2)::mul_ft q1 q2;;
+
+
+let coeff l =
+    let n = {re = 1./.float_of_int(List.length l);im = 1./.float_of_int(List.length l)} in
+    let rec aux l' = match l' with
+        |[]->[]
+        |e::q -> (mul n e)::aux q in
+        aux l
