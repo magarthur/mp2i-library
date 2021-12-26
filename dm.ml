@@ -66,3 +66,11 @@ let rec puiss2 l =
         
 
 
+let completer l = 
+    let t = List.length l in 
+    let rec aux l' =
+        let t' = List.length l' in
+        if t' = 2*t - 1
+            then l'
+        else aux (ajout_end l' 0) in
+        aux l;;
