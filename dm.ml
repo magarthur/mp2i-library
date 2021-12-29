@@ -1,6 +1,6 @@
 let mul_poly_naive t d =
     let degre = Array.length t - 1 in
-    let resultat = Array.make((2*degre) + 1) 0. in
+    let resultat = Array.make((2*degre) + 1) 0.) in
     for i = 0 to degre do
         for j = 0 to degre do
           resultat.(i + j) <- resultat.(i + j) +. t.(i) *. d.(j);
