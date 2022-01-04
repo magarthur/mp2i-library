@@ -38,7 +38,33 @@ let rec divise l = match l with
     |e::e1::q -> let q1, q2 = divise q in 
                 e::q1, e1::q2
                 
+let puiss z p = 
+    let  return =  ref un in
+    for i = 0 to p - 1 do
+        return := mul !return z 
+    done; 
+    !return                
                 
+let fft polynome w   = 
+
+    let rec coef_fourrier p w =         
+        match p with 
+                | _::_::_ -> let p0,p1 = divise p in 
+
+                      add  ( coef_fourrier p0 (mul w w) )  (mul ( coef_fourrier p1 (mul w w))  w) 
+
+                |[e] -> e
+                | _ -> failwith "il doit y avoir une puissance de 2 elements"
+                
+    in
+    
+    
+    let return = ref [] in
+    for k = 1 to List.length(polynome) do 
+        return := !return @ [(coef_fourrier polynome (puiss w k ))]
+    done; 
+    !return
+                    
                 
                 
 let rec pow y x = 
@@ -88,3 +114,10 @@ let coeff l =
         |[]->[]
         |e::q -> (mul n e)::aux q in
         aux l
+
+let mul_poly p q = 
+    let p_ft = fft (completer p) (conj w) in
+    let q_ft = fft (completer q) (conj w) in
+    let r_ft = mul_ft q_ft p_ft in 
+    let coef = coeff r_ft in 
+    coef
